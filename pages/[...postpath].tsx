@@ -82,9 +82,6 @@ const Post: React.FC<PostProps> = (props) => {
 		return str.replace(/(<([^>]+)>)/gi, '').replace(/\[[^\]]*\]/, '');
 	};
 
-	const imageLoader = ({ src, width, quality }) => {
-  return `https://usatrendinghour.com/${src}?w=${width}&q=${quality || 75}`
-}
 
 	return (
 		<>
@@ -106,11 +103,9 @@ const Post: React.FC<PostProps> = (props) => {
 			<div className="post-container">
 				<h1>{post.title}</h1>
 <Image
-      loader={imageLoader}
-      src="FIMpoxOutbreak_11zon.png"
-      alt="Picture of the author"
-      width={500}
-      height={500}
+        fill
+        src="https://usatrendinghour.com/wp-content/uploads/2024/08/FIKawasakiNinja500_11zon.png"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
     />
 				<article dangerouslySetInnerHTML={{ __html: post.content }} />
 			</div>
