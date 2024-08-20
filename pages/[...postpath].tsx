@@ -104,7 +104,7 @@ const Post: React.FC<PostProps> = (props) => {
 				<h1>{post.title}</h1>
 <Image
         fill
-        src="https://usatrendinghour.com/wp-content/uploads/2024/08/FIKawasakiNinja500_11zon.png"
+        src="FIKawasakiNinja500_11zon.png"
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
     />
 				<article dangerouslySetInnerHTML={{ __html: post.content }} />
