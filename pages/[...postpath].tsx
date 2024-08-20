@@ -107,7 +107,7 @@ const Post: React.FC<PostProps> = (props) => {
 				<h1>{post.title}</h1>
 <Image
       loader={imageLoader}
-      src="https://usatrendinghour.com/wp-content/uploads/2024/08/FIMpoxOutbreak_11zon.pn"
+      src="https://usatrendinghour.com/wp-content/uploads/2024/08/FIMpoxOutbreak_11zon.png"
       alt="Picture of the author"
       width={500}
       height={500}
