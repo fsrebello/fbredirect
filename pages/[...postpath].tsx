@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-Import Image from 'next/image';
+import Image from 'next/Image';
 import { GetServerSideProps } from 'next';
 import { GraphQLClient, gql } from 'graphql-request';
 
