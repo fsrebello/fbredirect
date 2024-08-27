@@ -5,7 +5,20 @@ import { GraphQLClient, gql } from 'graphql-request';
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
 	const endpoint = process.env.GRAPHQL_ENDPOINT as string;
-	const graphQLClient = new GraphQLClient(endpoint);
+// deleted 27Aug2024
+//	const graphQLClient = new GraphQLClient(endpoint);
+// deleted 27Aug2024
+
+// Added 27Aug2024
+
+	    const graphQLClient = new GraphQLClient(endpoint, {
+        headers: {
+            Authorization: `Basic ${Buffer.from(`${process.env.WP_USERNAME}:${process.env.WP_APP_PASSWORD}`).toString('base64')}`,
+        },
+    });
+	
+// Added 27Aug2024
+
 	const referringURL = ctx.req.headers?.referer || null;
 	const pathArr = ctx.query.postpath as Array<string>;
 	const path = pathArr.join('/');
@@ -18,9 +31,19 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 		return {
 			redirect: {
 				permanent: false,
-				destination: `${
-					`https://usatrendinghour.com/` + encodeURI(path as string)
-				}`,
+	// deleted 27Aug2024
+		
+//				destination: `${
+//					`https://usatrendinghour.com/` + encodeURI(path as string)
+//				}`,
+	// deleted 27Aug2024
+
+// Added 27Aug2024
+				
+			destination: `https://usatrendinghour.com/${encodeURI(path as string)}`,
+// Added 27Aug2024
+
+
 			},
 		};
 		}
@@ -49,6 +72,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 		}
 	`;
 
+// Added 27Aug2024
+
+  try {
+
+// Added 27Aug2024
+  
 	const data = await graphQLClient.request(query);
 	if (!data.post) {
 		return {
@@ -62,6 +91,17 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 			host: ctx.req.headers.host,
 		},
 	};
+
+// Added 27Aug2024
+
+} catch (error) {
+        console.error('GraphQL request failed:', error);
+        return {
+            notFound: true,
+        };
+    }
+// Added 27Aug2024
+	  
 };
 
 interface PostProps {
